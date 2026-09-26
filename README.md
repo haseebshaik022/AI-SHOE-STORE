@@ -1,27 +1,54 @@
-# AI Shoe Store - Backend Only
+# AI Shoe Store Backend
 
-Interview-focused FastAPI backend. No frontend and no admin system.
+An AI-powered e-commerce backend built with FastAPI that combines
+traditional backend APIs with RAG, vector search, Redis, and an LLM
+to provide an intelligent shoe-store assistant.
 
-## Database
-- users: user_id, username, password
-- items: item_id, item_name, item_price
-- orders: order_id, user_id -> users.user_id, item_id -> items.item_id
-- policy_chunks: chunk_id, content, embedding (384)
+The project is backend-only and is designed to demonstrate
+real-world backend, database, AI integration, authentication,
+caching, and deployment concepts.
 
-## ORM rule
-All database work uses SQLAlchemy ORM. The only raw SQL is `CREATE EXTENSION IF NOT EXISTS vector` in `preruns.py`.
+---
 
-## Auth
-Signup -> login -> JWT. Every protected endpoint verifies `Authorization: Bearer <token>` and gets the user_id from the JWT.
+## 🚀 Features
 
-## Run
-Fill `.env` in this project root. Then run once:
-```bash
-python preruns.py
-python add_items.py
-```
-Then:
-```bash
-uvicorn app.main:app --reload
-```
-Swagger: http://127.0.0.1:8000/docs
+- User registration and login
+- JWT-based authentication
+- Secure password hashing with bcrypt
+- Shoe catalogue management
+- Order creation and order history
+- AI-powered conversational assistant
+- Retrieval-Augmented Generation (RAG)
+- Semantic policy search using pgvector
+- Hugging Face embeddings
+- Groq LLM integration
+- Redis-based conversation history
+- Async PostgreSQL operations
+- SQLAlchemy ORM
+- Dockerized deployment
+- Interactive Swagger API documentation
+
+---
+
+## 🤖 AI Assistant
+
+The chatbot understands natural-language questions and uses
+different data sources depending on the user's request.
+
+### Policy Questions
+
+Company policies are stored as text, split into chunks, and
+converted into embeddings.
+
+```text
+User Question
+      ↓
+Hugging Face Embedding
+      ↓
+pgvector Similarity Search
+      ↓
+Relevant Policy Chunks
+      ↓
+Groq LLM
+      ↓
+Answer
