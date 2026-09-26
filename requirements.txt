@@ -1,0 +1,15 @@
+fastapi[standard]
+sqlalchemy[asyncio]
+asyncpg
+pgvector
+pydantic
+pydantic-settings
+python-dotenv
+PyJWT
+bcrypt
+upstash-redis
+langchain-text-splitters
+huggingface_hub
+groq
+numpy
+
