@@ -5,6 +5,7 @@ from app.db.database import session
 from app.models.item import Item
 from app.models.order import Order
 from app.core.dependencies import current_user
+from fastapi import HTTPException
 
 router = APIRouter(prefix="/orders", tags=["Orders"])
 
